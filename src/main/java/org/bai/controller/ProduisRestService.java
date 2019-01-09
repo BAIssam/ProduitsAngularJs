@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.bai.dao.ProduitsRepository;
+import org.bai.entities.Categorie;
 import org.bai.entities.Produits;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -44,6 +45,15 @@ public class ProduisRestService {
 	
 	@PostMapping(value="/produits")
 	public Produits addProduit(@RequestBody Produits p){
+		return produitsRepository.save(p);
+	}
+	
+	@PostMapping(value="/produits/categ/{id}")
+	public Produits saveProduit(@RequestBody Produits p, @PathVariable Long id){
+		Categorie categ = new Categorie();
+		categ.setId(id);
+		p.setCategorie(categ);
+		
 		return produitsRepository.save(p);
 	}
 	

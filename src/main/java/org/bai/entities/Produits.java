@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Produits implements Serializable {
@@ -16,6 +17,9 @@ public class Produits implements Serializable {
 	private String designation;
 	private double prix;
 	private int quantite;
+	
+	@ManyToOne
+	private Categorie categorie;
 	
 	public Produits() {
 		super();
@@ -59,6 +63,14 @@ public class Produits implements Serializable {
 
 	public void setQuantite(int quantite) {
 		this.quantite = quantite;
+	}
+
+	public Categorie getCategorie() {
+		return categorie;
+	}
+
+	public void setCategorie(Categorie categorie) {
+		this.categorie = categorie;
 	}
 	
 	
